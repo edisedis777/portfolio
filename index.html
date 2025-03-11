@@ -1,0 +1,994 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Analytics (placed at top for early loading) 
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=UA-xxxxxxx-2"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+      gtag("config", "UA-160320635-2");
+    </script>
+	  -->
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Eddie- Data Engineer, Software Engineer" />
+    <meta
+      name="keywords"
+      content="Data Engineer, Software Engineer, Python, JavaScript, Cloud" />
+    <meta name="author" content="Eddie" />
+
+    <!-- Open Graph Tags for Social Media -->
+    <meta property="og:title" content="Eddie | Data Engineer" />
+    <meta
+      property="og:description"
+      content="Eddie- Data Engineer, Software Engineer" />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="profile.jpg" />
+
+    <title>Edis | Data Engineer</title>
+
+    <!-- Favicon -->
+    <link rel="icon" href="favicon.ico" type="image/x-icon" />
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+
+    <!-- Preload critical fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Poppins:wght@300;500;700&display=swap"
+      rel="stylesheet" />
+
+    <!-- Font Awesome with specific subset to improve load time -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+      integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer" />
+
+    <!-- AOS Animation Library -->
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css"
+      rel="stylesheet" />
+
+    <!-- Inline critical CSS for faster rendering -->
+    <style>
+      /* Reset styles */
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      /* Theme variables for easy customization */
+      :root {
+        --background: #181818;
+        --surface: #333333;
+        --surface-hover: #333333;
+        --text: #ffffff;
+        --text-secondary: #cccccc;
+        --accent: #ffd700;
+        --accent-hover: #e6c400;
+        --transition-speed: 0.3s;
+        --border-radius: 8px;
+        --shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+      }
+
+      /* Dark mode preference detection */
+      @media (prefers-color-scheme: light) {
+        :root {
+          --background: #f2f2f2; /* Very Light Gray */
+          --surface: #ffffff; /* White */
+          --surface-hover: #e6e6e6; /* Light Gray */
+          --text: #111111; /* Dark Gray */
+          --text-secondary: #222222; /* Medium Dark Gray */
+          --accent: #0077b6; /* a slightly different shade of blue*/
+          --accent-hover: #004c99;
+          --shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+      }
+
+      html {
+        scroll-behavior: smooth;
+        scroll-padding-top: 80px;
+      }
+
+      body {
+        font-family: "Poppins", sans-serif;
+        background-color: var(--background);
+        color: var(--text);
+        transition: background-color 0.5s ease;
+        overflow-x: hidden;
+        line-height: 1.6;
+        padding-top: 70px;
+      }
+
+      /* Navigation */
+      nav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        background-color: var(--surface);
+        box-shadow: var(--shadow);
+        z-index: 1000;
+        padding: 15px 0;
+        transition: all 0.3s ease;
+      }
+
+      nav.scrolled {
+        padding: 10px 0;
+      }
+
+      .nav-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+      }
+
+      .logo {
+        font-weight: 700;
+        font-size: 1.5rem;
+        color: var(--accent);
+        text-decoration: none;
+      }
+
+      .nav-links {
+        display: flex;
+        gap: 20px;
+      }
+
+      .nav-links a {
+        text-decoration: none;
+        color: var(--text);
+        font-weight: 500;
+        transition: var(--transition-speed);
+        position: relative;
+        padding: 5px 0;
+      }
+
+      .nav-links a::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 0;
+        height: 2px;
+        background-color: var(--accent);
+        transition: var(--transition-speed);
+      }
+
+      .nav-links a:hover::after,
+      .nav-links a.active::after {
+        width: 100%;
+      }
+
+      .mobile-menu-toggle {
+        display: none;
+        background: none;
+        border: none;
+        color: var(--text);
+        font-size: 1.5rem;
+        cursor: pointer;
+      }
+
+      /* Sections */
+      section {
+        padding: 80px 20px;
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+
+      header {
+        text-align: center;
+        padding: 100px 20px 50px;
+        max-width: 800px;
+        margin: 0 auto;
+      }
+
+      .section-title {
+        font-size: clamp(1.8rem, 5vw, 2.5rem);
+        margin-bottom: 20px;
+        text-align: center;
+        position: relative;
+        padding-bottom: 15px;
+      }
+
+      .section-title::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 80px;
+        height: 3px;
+        background-color: var(--accent);
+      }
+
+      /* Hero section */
+      .intro {
+        font-size: clamp(2.5rem, 8vw, 4rem);
+        font-weight: 700;
+        margin-bottom: 0.5em;
+        letter-spacing: 0.05em;
+        color: var(--accent);
+      }
+
+      .intro-desc {
+        font-size: clamp(1.2rem, 5vw, 1.7rem);
+        margin-bottom: 1em;
+        line-height: 1.4;
+      }
+
+      .tagline {
+        margin-bottom: 2em;
+        font-size: clamp(1rem, 3vw, 1.2rem);
+        line-height: 1.5;
+        opacity: 0.8;
+      }
+
+      .social-links {
+        display: flex;
+        justify-content: center;
+        gap: clamp(15px, 5vw, 30px);
+        flex-wrap: wrap;
+      }
+
+      .social-links a {
+        text-decoration: none;
+        transition: transform var(--transition-speed);
+      }
+
+      .social-links i {
+        font-size: clamp(1.8rem, 6vw, 2.2rem);
+        color: var(--accent);
+        transition: color var(--transition-speed),
+          transform var(--transition-speed);
+      }
+
+      .social-links a:hover {
+        transform: translateY(-5px);
+      }
+
+      .social-links a:hover i {
+        color: var(--text);
+      }
+
+      /* Projects section */
+      .projects-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 30px;
+        margin-top: 40px;
+      }
+
+      .project-card {
+        background-color: var(--surface);
+        border-radius: var(--border-radius);
+        overflow: hidden;
+        box-shadow: var(--shadow);
+        transition: transform var(--transition-speed),
+          box-shadow var(--transition-speed);
+      }
+
+      .project-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+      }
+
+      .project-content {
+        padding: 20px;
+      }
+
+      .project-title {
+        font-size: 1.2rem;
+        font-weight: 700;
+        margin-bottom: 10px;
+        color: var(--accent);
+      }
+
+      .project-description {
+        color: var(--text-secondary);
+        margin-bottom: 15px;
+        font-size: 0.95rem;
+      }
+
+      .project-stats {
+        display: flex;
+        gap: 15px;
+        margin-bottom: 15px;
+        font-size: 0.85rem;
+      }
+
+      .project-stat {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+      }
+
+      .project-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-bottom: 15px;
+      }
+
+      .tag {
+        background-color: rgba(255, 215, 0, 0.2);
+        color: var(--accent);
+        padding: 3px 8px;
+        border-radius: 4px;
+        font-size: 0.8rem;
+      }
+
+      .project-links {
+        display: flex;
+        gap: 15px;
+      }
+
+      .project-links a {
+        text-decoration: none;
+        color: var(--text-secondary);
+        font-size: 1.1rem;
+        transition: color var(--transition-speed);
+      }
+
+      .project-links a:hover {
+        color: var(--accent);
+      }
+
+      /* Links section */
+      .links-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 30px;
+        margin-top: 40px;
+      }
+
+      .link-card {
+        background-color: var(--surface);
+        border-radius: var(--border-radius);
+        overflow: hidden;
+        box-shadow: var(--shadow);
+        padding: 20px;
+        transition: transform var(--transition-speed),
+          box-shadow var(--transition-speed);
+      }
+
+      .link-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+      }
+
+      .link-title {
+        font-size: 1.1rem;
+        font-weight: 600;
+        margin-bottom: 10px;
+      }
+
+      .link-title a {
+        color: var(--accent);
+        text-decoration: none;
+        transition: color var(--transition-speed);
+      }
+
+      .link-title a:hover {
+        color: var(--accent-hover);
+        text-decoration: underline;
+      }
+
+      .link-description {
+        color: var(--text-secondary);
+        margin-bottom: 15px;
+        font-size: 0.9rem;
+        line-height: 1.5;
+      }
+
+      .link-meta {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-size: 0.8rem;
+        color: var(--text-secondary);
+      }
+
+      .link-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-top: 10px;
+      }
+
+      /* Footer */
+      footer {
+        background-color: var(--surface);
+        padding: 30px 20px;
+        text-align: center;
+        font-size: 0.9rem;
+      }
+
+      .footer-links {
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+        margin: 20px 0;
+      }
+
+      .footer-links a {
+        color: var(--text-secondary);
+        text-decoration: none;
+        transition: color var(--transition-speed);
+      }
+
+      .footer-links a:hover {
+        color: var(--accent);
+      }
+
+      /* Theme toggle */
+      .theme-toggle {
+        background: transparent;
+        border: none;
+        cursor: pointer;
+        font-size: 1.2rem;
+        color: var(--accent);
+        transition: color var(--transition-speed);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+      }
+
+      .theme-toggle:hover {
+        color: var(--text);
+        background-color: rgba(255, 255, 255, 0.1);
+      }
+
+      /* Loader */
+      .loader {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: var(--background);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 2000;
+        transition: opacity 0.5s ease;
+      }
+
+      .loader.hidden {
+        opacity: 0;
+        pointer-events: none;
+      }
+
+      /* Responsive */
+      @media (max-width: 768px) {
+        .mobile-menu-toggle {
+          display: block;
+        }
+
+        .nav-links {
+          position: fixed;
+          top: 70px;
+          right: -100%;
+          flex-direction: column;
+          background-color: var(--surface);
+          width: 70%;
+          height: calc(100vh - 70px);
+          padding: 30px;
+          transition: right 0.3s ease;
+          gap: 15px;
+          box-shadow: var(--shadow);
+        }
+
+        .nav-links.active {
+          right: 0;
+        }
+
+        .nav-links a {
+          display: block;
+          padding: 10px 0;
+        }
+      }
+    </style>
+
+    <!-- Deferred non-critical CSS -->
+    <link
+      rel="stylesheet"
+      href="styles.css"
+      media="print"
+      onload="this.media='all'" />
+  </head>
+  <script src="script.js" defer></script>
+  <body>
+    <!-- Loading indicator -->
+    <div class="loader">
+      <div class="loader-spinner"></div>
+    </div>
+
+    <!-- Navigation -->
+    <nav id="navbar">
+      <div class="nav-container">
+        <a href="#" class="logo">Eddie</a>
+        <div class="nav-links" id="navLinks">
+          <a href="#home" class="active">Home</a>
+          <a href="#projects">Projects</a>
+          <a href="#links">Interesting Links</a>
+          <a href="#contact">Contact</a>
+        </div>
+        <button class="theme-toggle" aria-label="Toggle dark/light mode">
+          <i class="fas fa-moon"></i>
+        </button>
+        <button
+          class="mobile-menu-toggle"
+          id="mobileMenuToggle"
+          aria-label="Toggle menu">
+          <i class="fas fa-bars"></i>
+        </button>
+      </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header id="home">
+      <div data-aos="fade-up" data-aos-duration="800">
+        <h1 class="intro">Hello, I'm Eddie!</h1>
+        <div class="intro-desc">
+          Data Engineer, <span>Data Enthusiast</span>
+        </div>
+        <div class="tagline">
+          Data-Driven | Data Orchestration | Cloud Solutions
+        </div>
+        <div class="social-links">
+          <a
+            target="_blank"
+            href="mailto:eddiebeloiu@gmail.com"
+            aria-label="Email"
+            rel="noopener">
+            <i class="fas fa-envelope"></i>
+          </a>
+          <a
+            target="_blank"
+            href="https://github.com/edisedis777"
+            aria-label="GitHub"
+            rel="noopener">
+            <i class="fab fa-github"></i>
+          </a>
+          <a
+            target="_blank"
+            href="https://twitter.com/edisedis777"
+            aria-label="Twitter"
+            rel="noopener">
+            <i class="fab fa-twitter"></i>
+          </a>
+          <a
+            target="_blank"
+            href="https://www.linkedin.com/in/edisedis777/"
+            aria-label="LinkedIn"
+            rel="noopener">
+            <i class="fab fa-linkedin"></i>
+          </a>
+        </div>
+      </div>
+    </header>
+
+    <!-- Projects Section -->
+    <section id="projects">
+      <h2 class="section-title" data-aos="fade-up">Projects</h2>
+      <div class="projects-grid">
+        <!-- Project 1 -->
+        <div class="project-card" data-aos="zoom-in" data-aos-delay="100">
+          <div class="project-content">
+            <h3 class="project-title">BigQuery Cost Optimization</h3>
+            <p class="project-description">
+              Strategies to optimize Google BigQuery (GBQ) costs when dealing
+              with raw data dumps.
+            </p>
+            <div class="project-stats">
+              <div class="project-stat">
+                <i class="fas fa-star"></i>
+                <span>1</span>
+              </div>
+              <div class="project-stat">
+                <i class="fas fa-code-branch"></i>
+                <span>1</span>
+              </div>
+            </div>
+            <div class="project-tags">
+              <span class="tag">Python</span>
+              <span class="tag">GBQ</span>
+              <span class="tag">Vistual Studio Code</span>
+            </div>
+            <div class="project-links">
+              <a
+                href="https://github.com/edisedis777/BigQuery-Cost-Optimization/blob/main/python/execute_query.py"
+                target="_blank"
+                rel="noopener"
+                aria-label="View Python code">
+                <i class="fas fa-code"></i>
+              </a>
+              <a
+                href="https://github.com/edisedis777/BigQuery-Cost-Optimization/"
+                target="_blank"
+                rel="noopener"
+                aria-label="Live demo">
+                <i class="fas fa-external-link-alt"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project 2 -->
+        <div class="project-card" data-aos="zoom-in" data-aos-delay="200">
+          <div class="project-content">
+            <h3 class="project-title">DNA Helix</h3>
+            <p class="project-description">
+              A dynamic, interactive visualization of a DNA double helix
+              structure with animated background particles, built using
+              CreateJS.
+            </p>
+            <div class="project-stats">
+              <div class="project-stat">
+                <i class="fas fa-star"></i>
+                <span>1</span>
+              </div>
+              <div class="project-stat">
+                <i class="fas fa-code-branch"></i>
+                <span>1</span>
+              </div>
+            </div>
+            <div class="project-tags">
+              <span class="tag">HTML</span>
+              <span class="tag">CSS</span>
+              <span class="tag">JavaScript</span>
+              <span class="tag">CreateJS</span>
+            </div>
+            <div class="project-links">
+              <a
+                href="https://github.com/edisedis777/DNA-Helix/blob/main/index.html"
+                target="_blank"
+                rel="noopener"
+                aria-label="View code">
+                <i class="fas fa-code"></i>
+              </a>
+              <a
+                href="https://github.com/edisedis777/DNA-Helix/"
+                target="_blank"
+                rel="noopener"
+                aria-label="Live demo">
+                <i class="fas fa-external-link-alt"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project 3 -->
+        <div class="project-card" data-aos="zoom-in" data-aos-delay="300">
+          <div class="project-content">
+            <h3 class="project-title">Tableau Backup Tool</h3>
+            <p class="project-description">
+              An automated tool for backing up Tableau workbooks and datasources
+              to Git, featuring parallel processing, progress tracking, and
+              smart file handling.
+            </p>
+            <div class="project-stats">
+              <div class="project-stat">
+                <i class="fas fa-star"></i>
+                <span>1</span>
+              </div>
+              <div class="project-stat">
+                <i class="fas fa-code-branch"></i>
+                <span>1</span>
+              </div>
+            </div>
+            <div class="project-tags">
+              <span class="tag">Python</span>
+              <span class="tag">Git</span>
+              <span class="tag">Tableau</span>
+            </div>
+            <div class="project-links">
+              <a
+                href="https://github.com/edisedis777/Tableau-Backup-Tool/blob/main/tableau-backup.py"
+                target="_blank"
+                rel="noopener"
+                aria-label="View code">
+                <i class="fas fa-code"></i>
+              </a>
+              <a
+                href="https://github.com/edisedis777/Tableau-Backup-Tool"
+                target="_blank"
+                rel="noopener"
+                aria-label="Live demo">
+                <i class="fas fa-external-link-alt"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project 4 -->
+        <div class="project-card" data-aos="zoom-in" data-aos-delay="400">
+          <div class="project-content">
+            <h3 class="project-title">DataSchemify</h3>
+            <p class="project-description">
+              A interactive web application visualizes the orbital paths of the
+              Earth and Moon around the Sun in a 3D environment, simulating
+              their helical motion over time.
+            </p>
+            <div class="project-stats">
+              <div class="project-stat">
+                <i class="fas fa-star"></i>
+                <span>1</span>
+              </div>
+              <div class="project-stat">
+                <i class="fas fa-code-branch"></i>
+                <span>1</span>
+              </div>
+            </div>
+            <div class="project-tags">
+              <span class="tag">HTML</span>
+              <span class="tag">CSS</span>
+              <span class="tag">JavaScript</span>
+              <span class="tag">Three.js</span>
+            </div>
+            <div class="project-links">
+              <a
+                href="https://github.com/edisedis777/passage-of-time/blob/main/index.html"
+                target="_blank"
+                rel="noopener"
+                aria-label="View code">
+                <i class="fas fa-code"></i>
+              </a>
+              <a
+                href="https://github.com/edisedis777/passage-of-time/"
+                target="_blank"
+                rel="noopener"
+                aria-label="Live demo">
+                <i class="fas fa-external-link-alt"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project 5 -->
+        <div class="project-card" data-aos="zoom-in" data-aos-delay="300">
+          <div class="project-content">
+            <h3 class="project-title">Text Summarizer</h3>
+            <p class="project-description">
+              A text summarization tool powered by BART (Bidirectional and
+              Auto-Regressive Transformer) from Facebook, enhanced with advanced
+              features like batch processing, quantization, and a rich console
+              output.
+            </p>
+            <div class="project-stats">
+              <div class="project-stat">
+                <i class="fas fa-star"></i>
+                <span>1</span>
+              </div>
+              <div class="project-stat">
+                <i class="fas fa-code-branch"></i>
+                <span>1</span>
+              </div>
+            </div>
+            <div class="project-tags">
+              <span class="tag">Python</span>
+            </div>
+            <div class="project-links">
+              <a
+                href="https://github.com/edisedis777/text-summarizer/blob/main/summarize.py"
+                target="_blank"
+                rel="noopener"
+                aria-label="View code">
+                <i class="fas fa-code"></i>
+              </a>
+              <a
+                href="https://github.com/edisedis777/text-summarizer"
+                target="_blank"
+                rel="noopener"
+                aria-label="Live demo">
+                <i class="fas fa-external-link-alt"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+        <!-- Project 6 -->
+        <div class="project-card" data-aos="zoom-in" data-aos-delay="300">
+          <div class="project-content">
+            <h3 class="project-title">Slow Weather</h3>
+            <p class="project-description">
+              Slow Weather is an interactive web application that visualizes
+              weather data as a dynamic landscape. Built with HTML, CSS, and
+              JavaScript, it fetches real-time weather information from the
+              Open-Meteo API and transforms it into a scenic display featuring a
+              terrain shaped by hourly temperatures, and rain, snow, and clouds.
+            </p>
+            <div class="project-stats">
+              <div class="project-stat">
+                <i class="fas fa-star"></i>
+                <span>1</span>
+              </div>
+              <div class="project-stat">
+                <i class="fas fa-code-branch"></i>
+                <span>1</span>
+              </div>
+            </div>
+            <div class="project-tags">
+              <span class="tag">HTML</span>
+              <span class="tag">CSS</span>
+              <span class="tag">JavaScript</span>
+            </div>
+            <div class="project-links">
+              <a
+                href="https://github.com/edisedis777/slow-weather/blob/main/index.html"
+                target="_blank"
+                rel="noopener"
+                aria-label="View code">
+                <i class="fas fa-code"></i>
+              </a>
+              <a
+                href="https://github.com/edisedis777/slow-weather"
+                target="_blank"
+                rel="noopener"
+                aria-label="Live demo">
+                <i class="fas fa-external-link-alt"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Links Section -->
+    <section id="links">
+      <h2 class="section-title" data-aos="fade-up">Interesting Links</h2>
+      <div class="links-grid">
+        <!-- Link 1 -->
+        <div class="link-card" data-aos="flip-up" data-aos-delay="100">
+          <h3 class="link-title">
+            <a
+              href="https://github.com/ziolko/spreadapi"
+              target="_blank"
+              rel="noopener">
+              Free REST API for Google Spreadsheet
+            </a>
+          </h3>
+          <p class="link-description">
+            Turn any spreadsheet into a REST API for free with Google Apps
+            Script. The script runs on Google servers so no external services
+            have access to your data.
+          </p>
+          <div class="link-meta">
+            <span>March 8, 2025</span>
+            <span><i class="far fa-clock"></i> 1 min read</span>
+          </div>
+          <div class="link-tags">
+            <span class="tag">#REST API</span>
+            <span class="tag">#Google</span>
+            <span class="tag">#Free</span>
+          </div>
+        </div>
+
+        <!-- Link 2 -->
+        <div class="link-card" data-aos="flip-up" data-aos-delay="200">
+          <h3 class="link-title">
+            <a
+              href="https://github.com/agiresearch/A-mem"
+              target="_blank"
+              rel="noopener">
+              A-MEM: Agentic Memory for LLM Agents
+            </a>
+          </h3>
+          <p class="link-description">
+            A novel agentic memory system for LLM agents that can dynamically
+            organize memories in an agentic way.
+          </p>
+          <div class="link-meta">
+            <span>March 9, 2025</span>
+            <span><i class="far fa-clock"></i> 5 min read</span>
+          </div>
+          <div class="link-tags">
+            <span class="tag">#Agentic</span>
+            <span class="tag">#LLM</span>
+            <span class="tag">#Memory</span>
+          </div>
+        </div>
+
+        <!-- Link 3 -->
+        <div class="link-card" data-aos="flip-up" data-aos-delay="300">
+          <h3 class="link-title">
+            <a
+              href="https://www.sergey.fyi/articles/gemini-flash-2-tips"
+              target="_blank"
+              rel="noopener">
+              Tips for using Gemini Flash 2.0 for PDF Ingestion
+            </a>
+          </h3>
+          <p class="link-description">
+            The consensus seems clear: although current models still have some
+            limitations, LLMs will become the standard method for parsing
+            documents in the very near future.
+          </p>
+          <div class="link-meta">
+            <span>March 4, 2025</span>
+            <span><i class="far fa-clock"></i> 10 min read</span>
+          </div>
+          <div class="link-tags">
+            <span class="tag">#Gemini Flash 2.0</span>
+            <span class="tag">#LLM</span>
+            <span class="tag">#PDF</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+      <h2 class="section-title" data-aos="fade-up">Get In Touch</h2>
+      <div class="contact-container" data-aos="fade-up" data-aos-delay="200">
+        <p class="contact-text">
+          Interested in collaborating or have a question? Feel free to reach out
+          through any of my social channels or send me an email directly.
+        </p>
+        <div class="social-links contact-social">
+          <a
+            target="_blank"
+            href="mailto:eddiebeloiu@gmail.com"
+            aria-label="Email"
+            rel="noopener">
+            <i class="fas fa-envelope"></i>
+          </a>
+          <a
+            target="_blank"
+            href="https://github.com/edisedis777"
+            aria-label="GitHub"
+            rel="noopener">
+            <i class="fab fa-github"></i>
+          </a>
+          <a
+            target="_blank"
+            href="https://twitter.com/edisedis777"
+            aria-label="Twitter"
+            rel="noopener">
+            <i class="fab fa-twitter"></i>
+          </a>
+          <a
+            target="_blank"
+            href="https://www.linkedin.com/in/edisedis777/"
+            aria-label="LinkedIn"
+            rel="noopener">
+            <i class="fab fa-linkedin"></i>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+      <div class="footer-links">
+        <a href="#home">Home</a>
+        <a href="#projects">Projects</a>
+        <a href="#links">Links</a>
+        <a href="#contact">Contact</a>
+      </div>
+      <p>&copy; <span id="currentYear"></span> Eddie. All rights reserved.</p>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+  </body>
+</html>
