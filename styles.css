@@ -1,0 +1,281 @@
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  main {
+    padding: 4vh 4vw;
+  }
+
+  /* Improve mobile menu */
+  .nav-links {
+    position: fixed;
+    top: 70px;
+    right: -100%;
+    flex-direction: column;
+    background-color: var(--surface);
+    width: 70%;
+    height: calc(100vh - 70px);
+    padding: 30px;
+    transition: right 0.3s ease;
+    gap: 15px;
+    box-shadow: var(--shadow);
+    z-index: 999; /* Ensure menu is above other content */
+  }
+
+  .nav-links.active {
+    right: 0;
+  }
+
+  .nav-links a {
+    display: block;
+    padding: 10px 0;
+    width: 100%;
+    text-align: left;
+    font-size: 1.1rem;
+  }
+
+  /* Adjust project cards for better mobile view */
+  .projects-grid,
+  .links-grid {
+    grid-template-columns: 1fr;
+  }
+
+  /* Adjust section padding */
+  section {
+    padding: 60px 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  main {
+    padding: 3vh 3vw;
+  }
+
+  .icons-social {
+    gap: 15px;
+  }
+
+  /* Make nav container more compact */
+  .nav-container {
+    padding: 0 10px;
+  }
+
+  /* Adjust logo size */
+  .logo {
+    font-size: 1.2rem;
+  }
+
+  /* Smaller section padding */
+  section {
+    padding: 40px 10px;
+  }
+
+  /* Adjust hero section */
+  header {
+    padding: 60px 15px 30px;
+  }
+
+  /* Full width nav menu */
+  .nav-links {
+    width: 85%;
+  }
+
+  /* Adjust social links */
+  .social-links {
+    gap: 20px;
+  }
+
+  /* Smaller section titles */
+  .section-title {
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+  }
+
+  /* Make footer more compact */
+  footer {
+    padding: 20px 10px;
+  }
+}
+
+/* Animations for theme toggle */
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.theme-toggle:active i {
+  animation: spin 0.5s ease-in-out;
+}
+
+/* Theme-specific styles */
+.dark-theme {
+  --background: #181818;
+  --text: #ffffff;
+  --accent: #00ff15;
+  --accent-hover: #23e600;
+}
+
+.light-theme {
+  --background: #f5f5f5;
+  --text: #009dff;
+  --accent: #22a7f9;
+  --accent-hover: #004c99;
+}
+
+/* Loading spinner animation */
+.loader-spinner {
+  width: 48px;
+  height: 48px;
+  border: 5px solid var(--accent);
+  border-bottom-color: transparent;
+  border-radius: 50%;
+  animation: rotation 1s linear infinite;
+}
+
+@keyframes rotation {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* Enhanced animations */
+@keyframes bounce {
+  0%,
+  20%,
+  50%,
+  80%,
+  100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-20px);
+  }
+  60% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes flash {
+  0%,
+  50%,
+  100% {
+    opacity: 1;
+  }
+  25%,
+  75% {
+    opacity: 0.5;
+  }
+}
+
+@keyframes bounceIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.3);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.05);
+  }
+  70% {
+    transform: scale(0.9);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes bounceInDown {
+  0% {
+    opacity: 0;
+    transform: translateY(-2000px);
+  }
+  60% {
+    opacity: 1;
+    transform: translateY(30px);
+  }
+  80% {
+    transform: translateY(-10px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+@keyframes bounceInLeft {
+  0% {
+    opacity: 0;
+    transform: translateX(-2000px);
+  }
+  60% {
+    opacity: 1;
+    transform: translateX(30px);
+  }
+  80% {
+    transform: translateX(-10px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+@keyframes bounceInRight {
+  0% {
+    opacity: 0;
+    transform: translateX(2000px);
+  }
+  60% {
+    opacity: 1;
+    transform: translateX(-30px);
+  }
+  80% {
+    transform: translateX(10px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+/* Accessibility improvements */
+:focus {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+/* Improve tap targets for mobile */
+button,
+a {
+  min-height: 44px;
+  min-width: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Fix for mobile menu button */
+.mobile-menu-toggle {
+  z-index: 1001;
+  padding: 10px;
+  margin-left: 10px;
+}
+
+/* Print styles */
+@media print {
+  body {
+    background-color: white;
+    color: black;
+  }
+
+  .icons-social i {
+    color: black;
+  }
+
+  .theme-toggle,
+  .animated {
+    display: none;
+  }
+}
